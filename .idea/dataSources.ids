@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="MySQL - ebookshop@localhost" uuid="2cc89da9-f7ef-4136-954a-842e41ae5731">
+    <database-info product="MySQL" version="5.6.21-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="ebookshop"/>
+    <table name="books" schema="" catalog="ebookshop" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="author" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="title" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="price" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="amount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="ordered_book_ibfk_1" table="ordered_book" schema="" catalog="ebookshop" columns="id_book"/>
+    </table>
+    <table name="ordered_book" schema="" catalog="ebookshop" type="TABLE">
+      <column name="id_ordered_book" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_order" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id_book" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="amount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id_ordered_book"/>
+      <foreign-key name="ordered_book_ibfk_1" columns="id_book" ref-table="books" ref-schema="" ref-catalog="ebookshop" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="ordered_book_ibfk_2" columns="id_order" ref-table="orders" ref-schema="" ref-catalog="ebookshop" ref-columns="id_order" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="orders" schema="" catalog="ebookshop" type="TABLE">
+      <column name="id_order" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_user" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="date_order" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id_order"/>
+      <foreign-key name="orders_ibfk_1" columns="id_user" ref-table="user" ref-schema="" ref-catalog="ebookshop" ref-columns="id_user" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="ordered_book_ibfk_2" table="ordered_book" schema="" catalog="ebookshop" columns="id_order"/>
+    </table>
+    <table name="user" schema="" catalog="ebookshop" type="TABLE">
+      <column name="id_user" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="pass" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_user"/>
+      <exported-key name="orders_ibfk_1" table="orders" schema="" catalog="ebookshop" columns="id_user"/>
+      <index name="unique_email" unique="true" columns="email"/>
+      <index name="unique_name" unique="true" columns="name"/>
+    </table>
+  </data-source>
+</component>
