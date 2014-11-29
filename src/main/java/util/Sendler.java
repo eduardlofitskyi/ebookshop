@@ -10,7 +10,7 @@ import java.util.Properties;
  */
 public class Sendler extends Thread{
     private String username = "edosgk@gmail.com";
-    private String password = "7771200vjsjed";
+    private String password = "*****";
     private Properties props;
     private String subject = "EBOOKSHOP - Recover password";
     private String text = "Recovery pass:";
